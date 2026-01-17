@@ -122,7 +122,7 @@ for idx, row in result_df.iterrows():
         )
 ```
 
-See [PROJECT_REPORT_COMPLETE.md](PROJECT_REPORT_COMPLETE.md) for detailed usage examples and API documentation.
+See [PROJECT_REPORT.md](PROJECT_REPORT.md) for detailed usage examples and API documentation.
 
 ## Requirements
 
@@ -144,12 +144,12 @@ See [PROJECT_REPORT_COMPLETE.md](PROJECT_REPORT_COMPLETE.md) for detailed usage 
 
 **Key Finding**: AdaptivePolicy achieves highest effectiveness (61.90%) with fewest hints (21).
 
-See [PROJECT_REPORT_COMPLETE.md](PROJECT_REPORT_COMPLETE.md) for detailed experimental results, analysis, and methodology.
+See [PROJECT_REPORT.md](PROJECT_REPORT.md) for detailed experimental results, analysis, and methodology.
 
 ## Documentation
 
 For detailed documentation, technical explanations, cost analysis, and research findings, see:
-- **[PROJECT_REPORT_COMPLETE.md](PROJECT_REPORT_COMPLETE.md)** - Comprehensive project report
+- **[PROJECT_REPORT.md](PROJECT_REPORT.md)** - Comprehensive project report
 
 ## License
 
