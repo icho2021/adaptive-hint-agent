@@ -7,9 +7,9 @@
 
 ## Executive Summary
 
-This project implements an intelligent adaptive hint generation system for problem-solving tasks. The system processes learner interaction logs, infers learner states using behavioral features, and provides context-aware hints using LLM-powered generation. The project demonstrates a **complete end-to-end research pipeline** from data processing to adaptive feedback, with a focus on cost-effective implementation using local LLM inference to minimize research expenses.
+This project addresses a critical gap in online learning platforms: the lack of cost-effective, adaptive hint systems. The system processes learner interaction logs, infers learner states using behavioral features, and provides context-aware hints using LLM-powered generation. This work demonstrates a complete end-to-end research pipeline from data processing to adaptive feedback, with a focus on cost-effective implementation using local LLM inference to minimize research expenses.
 
-**Key Achievement**: Successfully built a fully functional adaptive hint system that balances effectiveness and cost, making AI-powered educational support accessible without expensive cloud API fees.
+**Key Achievement**: A fully functional adaptive hint system was developed that balances effectiveness and cost, making AI-powered educational support accessible without expensive cloud API fees.
 
 **Technical Scope**: This is a **complete research framework** implementing:
 - **6 core modules** with modular, extensible architecture
@@ -47,7 +47,7 @@ During my university studies, I observed a critical gap in online learning platf
 
 ### 1.2 User Research: Validating the Problem
 
-To understand the scope of this issue, I conducted user research with university students:
+To understand the scope of this issue, user research was conducted with university students:
 
 **Research Method**: 
 - Distributed questionnaires across multiple courses
@@ -68,7 +68,7 @@ To understand the scope of this issue, I conducted user research with university
 
 ### 1.3 Problem Definition
 
-Based on the research, I defined the core problem:
+Based on the research, the core problem was defined as:
 
 > **How can we create a cost-effective, privacy-friendly, and adaptive intelligent hint system that responds to individual learner states?**
 
@@ -103,13 +103,13 @@ Based on the research, I defined the core problem:
 
 ---
 
-## 2. How I Solved the Problem: Step-by-Step Implementation
+## 2. Solution Approach: Step-by-Step Implementation
 
 ### 2.1 Step 1: Data Processing - Simulated Learner Interaction Logs
 
-**What I Did**: Created a data generator to simulate realistic learner interaction logs.
+**Implementation**: A data generator was created to simulate realistic learner interaction logs.
 
-**How I Did It**:
+**Methodology**:
 - Implemented `LearnerLogGenerator` class
 - Generated logs with key fields:
   - `attempt_num`: Sequential attempt number
@@ -118,7 +118,7 @@ Based on the research, I defined the core problem:
   - `timestamp`: When the attempt occurred
   - `consecutive_failures`: Running count of failures
 
-**Why This Approach**:
+**Design Rationale**:
 - Allows testing without real data
 - Configurable parameters (confusion level, success rate)
 - Reproducible with seed values
@@ -128,9 +128,9 @@ Based on the research, I defined the core problem:
 
 ### 2.2 Step 2: Feature Engineering - Extracting Behavioral Features
 
-**What I Did**: Engineered behavioral features from interaction logs to capture learning patterns.
+**Implementation**: Behavioral features were engineered from interaction logs to capture learning patterns.
 
-**How I Did It**:
+**Methodology**:
 
 #### 2.2.1 Consecutive Failures
 
@@ -214,9 +214,9 @@ recent_activity = (time_gap_seconds < recent_avg_time_gap * 1.5)
 
 ### 2.3 Step 3: State Inference - Classifying Learner States
 
-**What I Did**: Implemented rule-based classification to infer learner states (confused, progressing, neutral).
+**Implementation**: Rule-based classification was implemented to infer learner states (confused, progressing, neutral).
 
-**How I Did It**:
+**Methodology**:
 
 **State Classification Rules**:
 
@@ -267,9 +267,9 @@ def infer_state(features):
 
 ### 2.4 Step 4: Feedback Policy - Deciding When to Trigger Hints
 
-**What I Did**: Implemented multiple feedback policies to decide when hints should be triggered.
+**Implementation**: Multiple feedback policies were implemented to decide when hints should be triggered.
 
-**How I Did It**:
+**Methodology**:
 
 #### 2.4.1 Rule-Based Policy
 
@@ -309,9 +309,9 @@ def infer_state(features):
 
 ### 2.5 Step 5: Hint Generation - LLM-Powered Adaptive Hints
 
-**What I Did**: Integrated local Llama3-Instruct to generate adaptive hints.
+**Implementation**: Local Llama3-Instruct was integrated to generate adaptive hints.
 
-**How I Did It**:
+**Methodology**:
 
 #### 2.5.1 LLM Provider Abstraction
 
@@ -349,36 +349,37 @@ def infer_state(features):
 
 **Primary Reason: Research Budget Constraints**
 
-- **Cost Analysis**:
-  - Cloud API (GPT-3.5): ~$150 for 100K hints
-  - Cloud API (GPT-4): ~$3,000 for 100K hints
-  - Local Llama3: **$0** for unlimited hints
+As an independent project, budget constraints necessitated cost-effective solutions. Cost analysis reveals:
+- Cloud API (GPT-3.5): ~$150 for 100K hints
+- Cloud API (GPT-4): ~$3,000 for 100K hints
+- Local Llama3: **$0** for unlimited hints
 
-- **Why Llama3-Instruct Specifically**:
-  1. **Fine-tuned for instruction following**: Reduces need for custom fine-tuning
-  2. **Sufficient quality**: 8B model adequate for educational hints
-  3. **Privacy**: All data stays local
-  4. **Control**: Full control over model and parameters
+**Why Llama3-Instruct Specifically**:
+Llama3-Instruct was selected based on the following considerations:
+1. **Fine-tuned for instruction following**: Reduces need for custom fine-tuning
+2. **Sufficient quality**: 8B model is adequate for educational hints, as validated through testing
+3. **Privacy**: All data stays local, addressing privacy requirements
+4. **Control**: Full control over model and parameters
 
 **Trade-offs**:
-- Speed: 2-5 seconds (vs. 0.5-2 seconds for cloud)
-- Quality: Good for hints (vs. Excellent for complex reasoning)
-- **Acceptable for research**: Enables unlimited experimentation
+- Speed: 2-5 seconds (vs. 0.5-2 seconds for cloud) - acceptable for research
+- Quality: Good for hints (vs. Excellent for complex reasoning) - sufficient for the intended use case
+- **Acceptable for research**: Enables unlimited experimentation without budget constraints
 
 **Future Plans with Research Funding**:
-- Cloud deployment would enable:
-  - Higher quality (GPT-4 for complex scenarios)
-  - Faster response (0.5-2 seconds)
-  - Better scalability
-  - Multi-modal capabilities
+With research funding, cloud deployment would enable:
+- Higher quality (GPT-4 for complex scenarios)
+- Faster response (0.5-2 seconds)
+- Better scalability
+- Multi-modal capabilities
 
 **Code Location**: `src/hint_generator.py`
 
 ### 2.6 Step 6: Trace Replay - Strategy Comparison
 
-**What I Did**: Built a trace-replay framework to compare different hint strategies.
+**Implementation**: A trace-replay framework was built to compare different hint strategies.
 
-**How I Did It**:
+**Methodology**:
 
 #### 2.6.1 What is Trace Replay?
 
@@ -427,51 +428,51 @@ class TraceReplay:
 
 The system successfully addresses the four core problems identified:
 
-- ✅ **Timing Issues**: Through behavioral analysis, the system provides hints at appropriate moments
+- **Timing Issues**: Through behavioral analysis, the system provides hints at appropriate moments
   - Analyzes consecutive failures, recent activity, and time patterns
   - Triggers hints when learners need help most, not too early or too late
   
-- ✅ **Personalization**: Adapts hint content and tone based on learner state
+- **Personalization**: Adapts hint content and tone based on learner state
   - Confused learners receive supportive, detailed hints
   - Progressing learners receive challenging, encouraging hints
   - Neutral learners receive informative, moderate hints
 
-- ✅ **Cost**: Zero API costs, making it accessible to students and research institutions
+- **Cost**: Zero API costs, making it accessible to students and research institutions
   - Local Llama3-Instruct: $0 for unlimited use
   - Enables extensive experimentation without budget constraints
 
-- ✅ **Privacy**: All data processed locally, never sent to cloud services
+- **Privacy**: All data processed locally, never sent to cloud services
   - Compliant with educational privacy regulations
   - Full control over learner data
 
 ### 3.2 Technical Contributions
 
-- ✅ **Complete Adaptive Hint System**: End-to-end pipeline from data to hints
+- **Complete Adaptive Hint System**: An end-to-end pipeline was developed from data to hints
   - **6 interconnected modules**: Data generation, feature engineering, state inference, feedback policies, hint generation, trace replay
   - **Modular architecture**: Each component is independently testable and extensible
-  - **Design patterns**: Provider abstraction, policy pattern, strategy pattern for flexibility
+  - **Design patterns**: Provider abstraction, policy pattern, and strategy pattern were used for flexibility
   - Data processing → Feature engineering → State inference → Policy application → Hint generation
   - Fully functional and extensible architecture
 
-- ✅ **Cost-Effective LLM Integration**: Demonstrates local LLM can be used for educational applications
+- **Cost-Effective LLM Integration**: This work demonstrates that local LLM can be used for educational applications
   - **Provider abstraction pattern**: Supports multiple LLM backends (Ollama, OpenAI) with automatic fallback
   - **Adaptive prompt engineering**: Context-aware hint generation with state-dependent detail levels and tones
-  - Proves 8B models are sufficient for hint generation
+  - Results demonstrate that 8B models are sufficient for hint generation
   - Provides framework for cost-effective AI integration
 
-- ✅ **Strategy Comparison Framework**: Systematic evaluation of different strategies
+- **Strategy Comparison Framework**: Systematic evaluation of different strategies was implemented
   - **Trace-replay methodology**: Fair comparison by replaying same data with different policies
   - **Multiple evaluation metrics**: Frequency, responsiveness, effectiveness, timing analysis
   - **Quantitative comparison**: Side-by-side policy evaluation with statistical metrics
   - Enables evidence-based policy selection
 
-- ✅ **Behavioral Feature Engineering with Noise Reduction**:
+- **Behavioral Feature Engineering with Noise Reduction**:
   - **Rolling window features**: Smooth temporal patterns (recent success rate, time gaps)
   - **Multi-scale analysis**: Recent vs. cumulative features for different time horizons
   - **Noise filtering strategies**: Threshold-based, context-aware, session-bound features
   - **Trend analysis**: Success trend detection for state inference
 
-- ✅ **Open Source Implementation**: Reusable components for research community
+- **Open Source Implementation**: Reusable components for research community
   - **Modular design**: Easy to extend with new policies, features, or ML models
   - **Well-documented codebase**: Clear interfaces and implementation details
   - **Research-ready**: Can immediately integrate real data and ML models
@@ -479,15 +480,15 @@ The system successfully addresses the four core problems identified:
 
 ### 3.3 Research Value
 
-- ✅ **Hypothesis Validation**: Tests whether local LLM is sufficient for educational applications
+- **Hypothesis Validation**: The hypothesis that local LLM is sufficient for educational applications was tested
   - Results: Yes, 8B model provides adequate quality for hint generation
   - Trade-offs identified: Speed vs. cost, quality vs. complexity
 
-- ✅ **Strategy Comparison**: Compares different feedback strategies
+- **Strategy Comparison**: Different feedback strategies were compared
   - Rule-based vs. data-driven vs. adaptive policies
-  - Identifies optimal strategies for different scenarios
+  - Analysis identifies optimal strategies for different scenarios
 
-- ✅ **Extensibility**: Foundation for future integration of real data and ML models
+- **Extensibility**: Foundation for future integration of real data and ML models
   - Architecture supports ML model integration
   - Ready for real-world data integration
   - Scalable to larger studies
@@ -495,10 +496,10 @@ The system successfully addresses the four core problems identified:
 ### 3.4 Experimental Results
 
 **System Validation**:
-- ✅ All core components successfully tested and validated
-- ✅ End-to-end pipeline functional (data generation → hint generation)
-- ✅ Local LLM integration working (Ollama with llama3:latest)
-- ✅ State inference accuracy: 100% (all confused states correctly identified in test case)
+- All core components successfully tested and validated
+- End-to-end pipeline functional (data generation → hint generation)
+- Local LLM integration working (Ollama with llama3:latest)
+- State inference accuracy: 100% (all confused states correctly identified in test case)
 
 **Strategy Comparison Results**:
 
@@ -531,10 +532,10 @@ Five strategies were systematically compared using trace-replay methodology on 1
    - Demonstrates value of adaptive feedback control
 
 **Hint Generation Quality**:
-- ✅ All hints generated with appropriate detail levels (detailed for confused learners)
-- ✅ Tone adaptation working correctly (supportive and encouraging for confused state)
-- ✅ Context-aware content (references to specific problem types)
-- ✅ LLM-generated hints are educational, supportive, and pedagogically appropriate
+- All hints generated with appropriate detail levels (detailed for confused learners)
+- Tone adaptation working correctly (supportive and encouraging for confused state)
+- Context-aware content (references to specific problem types)
+- LLM-generated hints are educational, supportive, and pedagogically appropriate
 ---
 
 ## 4. Technical Details: Answering Key Questions
@@ -670,7 +671,7 @@ Compare:
 **Why This LLM**:
 
 1. **Cost Efficiency** (Primary Reason):
-   - **Research Budget Constraints**: As an independent project, I had limited budget
+   - **Research Budget Constraints**: As an independent project, budget constraints were a primary consideration
    - **Cloud API Costs**:
      - GPT-3.5-turbo: ~$0.0015 per 1K tokens
      - GPT-4: ~$0.03 per 1K tokens
@@ -736,21 +737,21 @@ Compare:
 ### 5.1 Project Scope
 
 **What the System Does**:
-- ✅ **Complete data processing pipeline**: Processes learner interaction logs (simulated) with realistic patterns
-- ✅ **Advanced feature engineering**: Extracts 8+ behavioral features with noise reduction strategies
-- ✅ **State inference system**: Infers learner states (confused/progressing/neutral) using interpretable rules
-- ✅ **Multiple feedback policies**: Implements 3 distinct policies (rule-based, data-driven, adaptive) with extensible architecture
-- ✅ **LLM-powered hint generation**: Generates adaptive hints using local LLM with provider abstraction pattern
-- ✅ **Systematic strategy comparison**: Compares strategies via trace replay with multiple evaluation metrics
-- ✅ **Modular architecture**: 6 core modules designed for easy extension and integration
+- **Complete data processing pipeline**: Processes learner interaction logs (simulated) with realistic patterns
+- **Advanced feature engineering**: Extracts 8+ behavioral features with noise reduction strategies
+- **State inference system**: Infers learner states (confused/progressing/neutral) using interpretable rules
+- **Multiple feedback policies**: Implements 3 distinct policies (rule-based, data-driven, adaptive) with extensible architecture
+- **LLM-powered hint generation**: Generates adaptive hints using local LLM with provider abstraction pattern
+- **Systematic strategy comparison**: Compares strategies via trace replay with multiple evaluation metrics
+- **Modular architecture**: 6 core modules designed for easy extension and integration
 
 **What the System Doesn't Do** (Current Limitations - By Design):
-- ❌ Real-world data integration (uses simulated data) → **Architecture ready for real data**
-- ❌ Machine learning models (uses rule-based inference) → **Rule-based serves as interpretable baseline, architecture supports ML**
-- ❌ Multi-problem type support (focused on math) → **Focused scope for MVP validation**
-- ❌ Real-time interactive system (batch processing) → **Research framework, not production system**
-- ❌ Long-term learning tracking (single-session focus) → **Session-level analysis for MVP**
-- ❌ Multi-modal hints (text only) → **Text-based hints sufficient for proof-of-concept**
+- Real-world data integration (uses simulated data) → **Architecture ready for real data**
+- Machine learning models (uses rule-based inference) → **Rule-based serves as interpretable baseline, architecture supports ML**
+- Multi-problem type support (focused on math) → **Focused scope for MVP validation**
+- Real-time interactive system (batch processing) → **Research framework, not production system**
+- Long-term learning tracking (single-session focus) → **Session-level analysis for MVP**
+- Multi-modal hints (text only) → **Text-based hints sufficient for proof-of-concept**
 
 ### 5.2 Why These Limitations Exist
 
@@ -815,23 +816,23 @@ Compare:
 
 ## 7. Conclusion
 
-This project successfully demonstrates a complete research framework for adaptive hint generation in problem-solving tasks. The system addresses critical gaps in existing educational platforms by providing cost-effective, privacy-friendly, and personalized AI-powered support.
+This work presents a complete research framework for adaptive hint generation in problem-solving tasks. The system addresses critical gaps in existing educational platforms by providing cost-effective, privacy-friendly, and personalized AI-powered support.
 
 ### Key Achievements
 
-1. **Complete System Implementation**: Built a fully functional end-to-end pipeline from data processing to adaptive hint generation, demonstrating all core capabilities required for adaptive learning research.
+1. **Complete System Implementation**: A fully functional end-to-end pipeline was developed from data processing to adaptive hint generation, demonstrating all core capabilities required for adaptive learning research.
 
-2. **Cost-Effective Solution**: Successfully integrated local LLM (Llama3-Instruct) to achieve zero API costs while maintaining sufficient quality for educational applications, making AI-powered learning support accessible to students and researchers.
+2. **Cost-Effective Solution**: Local LLM (Llama3-Instruct) was successfully integrated to achieve zero API costs while maintaining sufficient quality for educational applications, making AI-powered learning support accessible to students and researchers.
 
-3. **Systematic Evaluation**: Implemented trace-replay methodology to systematically compare different feedback strategies, with experimental results showing that AdaptivePolicy outperforms static policies (61.90% effectiveness vs. 47.76%-56.25%).
+3. **Systematic Evaluation**: Trace-replay methodology was implemented to systematically compare different feedback strategies, with experimental results showing that AdaptivePolicy outperforms static policies (61.90% effectiveness vs. 47.76%-56.25%).
 
-4. **Research-Ready Framework**: Designed modular, extensible architecture that supports future integration of real data, ML models, and larger-scale studies, providing a solid foundation for continued research.
+4. **Research-Ready Framework**: A modular, extensible architecture was designed that supports future integration of real data, ML models, and larger-scale studies, providing a solid foundation for continued research.
 
 ### Research Contributions
 
-- **Methodological**: Demonstrated trace-replay as an effective evaluation framework for comparing feedback strategies
-- **Technical**: Proved that local 8B LLM models are sufficient for educational hint generation
-- **Practical**: Provided a cost-effective alternative to expensive cloud APIs for educational technology research
+- **Methodological**: Trace-replay was demonstrated as an effective evaluation framework for comparing feedback strategies
+- **Technical**: Results demonstrate that local 8B LLM models are sufficient for educational hint generation
+- **Practical**: A cost-effective alternative to expensive cloud APIs for educational technology research was provided
 
 ### Future Impact
 
