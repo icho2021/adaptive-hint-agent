@@ -1,10 +1,5 @@
-# Interview Visual Materials - Architecture Diagrams & Examples
+# Architecture Diagrams & Examples
 ## AI-Driven Adaptive Game Feedback Using LLMs and Offline RL
-
-> When interviewer asks "draw a diagram" or "give an example," use these materials
-> Prepared for: Spring 2026 RA Position with Dr. Hazra Imran
-
----
 
 ## 📊 System Architecture Diagram
 
@@ -526,51 +521,6 @@ QUANTUM-INSPIRED STATE (Superposition Model):
     - Enables nuanced intervention decisions
     - Can detect state transitions (confusion → persistence)
     - Better reflects human learning reality
-```
-
----
-
-## 💬 Quick Reference: How to Use These Materials in Interview
-
-| QUESTION FROM INTERVIEWER | REFERENCE THIS MATERIAL |
-|--------------------------|----------------------|
-| "Describe the system architecture" | System Architecture Diagram (top) |
-| "Can you give a concrete example?" | Quadratic Equation Trace (full player session) |
-| "How do you decide when to intervene?" | Learner State Decision Tree |
-| "How do you compare strategies?" | Trace Replay Comparison Matrix |
-| "How do you generate NPC feedback?" | LLM Feedback Generation section |
-| "How do you ensure consistency?" | JSON Output Schema & Validation |
-| "How do you log decisions?" | Complete Interaction Decision Log |
-| "What about different player types?" | Policy Comparison: Three Strategies |
-| "How does your state model work?" | Quantum-Inspired State Representation |
-
----
-
-## 📋 Key Interview Talking Points
-
-1. **End-to-End Pipeline**
-   - From raw learner traces → state inference → NPC decision → LLM feedback
-   - Fully logged and reproducible
-
-2. **Core Innovation**
-   - Not just "better prompts" but **intelligent intervention timing and strength**
-   - Using trace replay for policy comparison without harming players
-
-3. **Adaptability**
-   - Adjust NPC behavior based on player state (struggling vs advanced)
-   - Different pacing strategies tested offline
-
-4. **Research Rigor**
-   - Multiple policy comparison (early vs late intervention)
-   - Offline evaluation minimizes risk to player experience
-   - Clear metrics for success (completion, engagement, learning quality)
-
-5. **Scalability**
-   - Framework designed for future large-scale studies
-   - LLM-based but with controlled outputs
-   - Can be adapted to different game types
-
----
 
 **Prepared by:** Zimin (Icho) Cai  
 **For:** RA Application - AI-Driven Adaptive Game Feedback  
